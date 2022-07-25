@@ -8,7 +8,7 @@ namespace VTUnpacker
 {
     class Program
     {
-        static readonly string  supportedPacketFiles = ".vtmb.vtsb.vtcb.pngb.jpgb";
+        static readonly string supportedPacketFiles = ".vtmb.vtsb.vtcb.pngb.jpgb";
         static void Main(string[] args)
         {
             Assembly assem = Assembly.GetExecutingAssembly();
@@ -16,7 +16,7 @@ namespace VTUnpacker
             Version ver = assemName.Version;
             Console.WriteLine("VTOL Workshop Unpacker\nversion {0}", ver.ToString());
             Console.WriteLine("----------------------\n");
-            if(args.Length < 1)
+            if (args.Length < 1)
             {
                 Console.WriteLine("Error: You must specify a folder or file to unpack.\n");
                 Console.WriteLine("Examples:\n\n./VTOLWSUnpacker .  \t\t\t\tUse current directory");
@@ -28,15 +28,15 @@ namespace VTUnpacker
             }
             else
             {
-               Console.WriteLine("Using {0} as path", args[0]);
-               UnPackFilesRead(args[0]);
-               Console.WriteLine("----------------------\n");
+                Console.WriteLine("Using {0} as path", args[0]);
+                UnPackFilesRead(args[0], true);
+                Console.WriteLine("----------------------\n");
 
             }
-           
+
         }
 
-        static void UnPackFilesRead(string path, bool removeOriginal = false)
+        static void UnPackFilesRead(string path, bool removeOriginal = true)
         {
             if (File.Exists(path) && supportedPacketFiles.Contains(Path.GetExtension(path).ToLower()))
             {
@@ -50,9 +50,9 @@ namespace VTUnpacker
                 Console.WriteLine("Found {0} files to unpack.", files.Length);
                 foreach (string f in files)
                 {
-                    UnPackFilesRead(f.ToLower(), removeOriginal);
+                    UnPackFilesRead(f, removeOriginal);
                 }
-                
+
             }
             else
             {

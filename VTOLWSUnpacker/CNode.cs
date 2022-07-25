@@ -12,7 +12,7 @@ namespace VTUnpacker
         private readonly Dictionary<string, string> values;
         private readonly List<CNode> nodes;
         private readonly static int specialCharCount = "={}<>\"".Length;
-        private readonly  static string decodedString ="CustomScenarioCAMPAIGNVTMapCustom";
+        private readonly static string decodedString = "CustomScenarioCAMPAIGNVTMapCustom";
         private static byte[] readEncodeBuffer = new byte[0];
         private struct ConfigValue
         {
@@ -156,8 +156,8 @@ namespace VTUnpacker
                             }
                         }
                     }
-                    string text2 = text[0..^(num5 - num2)];
-                    string text3 = text[0..^(num5 - num4)];
+                    string text2 = text.Substring(num2, num3 - num2);
+                    string text3 = text.Substring(num4, num5 - num4);
                     text3 = text3.Replace("///n", "\n");
                     configNode.SetValueString(text2, text3);
                 }
